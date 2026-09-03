@@ -1,8 +1,1 @@
-title = "gitleaks config — github-talent-radar-claude"
-
-[extend]
-useDefault = true
-
-# This repo is documentation + a Claude skill file only — no code that
-# should ever legitimately contain a real key. The default gitleaks
-# ruleset is sufficient; nothing is relaxed here.
+- **New run vs. refresh**: if the user says this is a follow-up for a role you've already built a tracker for, ask for that tracker's Artifact URL (or find it via `Artifact` `list` action, matching title `"<Role> Talent Radar"`) instead of creating a duplicate.
