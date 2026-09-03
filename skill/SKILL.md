@@ -18,7 +18,7 @@ Ask (conversationally, or via AskUserQuestion if the session supports it) for wh
   3. Repo contributor — an `owner/repo`
   4. Topic/library — a GitHub topic tag
   5. Company org — a GitHub org handle
-- **New run vs. refresh**: if the user says this is a follow-up for a role you've already built a tracker for, ask for that tracker's Artifact URL (or find it via `Artifact` `list` action, matching title "<Role> Talent Radar") instead of creating a duplicate. Each role gets its OWN tracker (one Artifact per role) — never merge roles into one shared tracker unless the user explicitly asks for that.
+- **New run vs. refresh**: if the user says this is a follow-up for a role you've already built a tracker for, ask for that tracker's Artifact URL (or find it via `Artifact` `list` action, matching title `"<Role> Talent Radar"`) instead of creating a duplicate.
 
 Don't silently assume defaults for missing search criteria — ask. Do proceed without asking if the user has clearly already supplied everything needed.
 
