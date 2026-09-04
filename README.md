@@ -159,6 +159,17 @@ README.md
 .gitignore
 LICENSE
 ```
+## Security notes
+
+This repository is a public template and should include logic only, never live secrets or personal data.
+
+Safe to publish includes workflow instructions, endpoint patterns, field mappings, and example queries.
+
+Never commit tokens, API keys, `.env` files, private keys, or real candidate data.
+
+Gitleaks is configured in `.github/workflows/gitleaks.yml`.
+
+Run local checks before pushing.
 
 ## License
 
