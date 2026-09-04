@@ -2,13 +2,13 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A Claude-native fork of [Github-Talent-Radar-with-Claude-n8n-Airtable](https://github.com/catiasousa/Github-Talent-Radar-with-Claude-n8n-Airtable) — same sourcing pipeline, rebuilt to run entirely inside Claude instead of n8n + Airtable.
+A Claude-native fork of [Github-Talent-Radar-with-Claude-n8n-Airtable](https://github.com/catiasousa/Github-Talent-Radar-with-Claude-n8n-Airtable), same sourcing pipeline, rebuilt to run entirely inside Claude instead of n8n + Airtable.
 
 ## What this project does
 
-This project builds a GitHub sourcing system you run through Claude. It searches GitHub using multiple discovery methods, evaluates each profile itself (no separate AI API call — Claude does the scoring in-context), ranks candidate fit for your target role, and keeps high-signal candidates in a live tracker page, including a personalized outreach line for each one.
+This project builds a GitHub sourcing system you run through Claude. It searches GitHub using multiple discovery methods, evaluates each profile itself (no separate AI API call as Claude does the scoring in-context), ranks candidate fit for your target role and keeps high-signal candidates in a live tracker page, including a personalized outreach line for each one.
 
-Ask Claude any time you want a fresh batch for a role. With a computer linked and a scheduled task set up, it can also run unattended on a cadence you choose — but that's opt-in, not required.
+Ask Claude any time you want a fresh batch for a role. With a computer linked and a scheduled task set up, it can also run unattended on a cadence you choose, but that's opt-in, not required.
 
 ## Why GitHub
 
@@ -20,7 +20,7 @@ This pipeline applies a consistent sourcing process to GitHub profiles, run when
 
 It begins with multiple discovery paths to capture different engineering signals, then merges and de-duplicates profiles so each candidate is evaluated once.
 
-Each profile is enriched with practical context from GitHub activity, then scored by Claude directly — structured fit score, strengths, gaps, and a priority action, with no separate scoring call or JSON round-trip needed.
+Each profile is enriched with practical context from GitHub activity, then scored by Claude directly, structured fit score, strengths, gaps, and a priority action, with no separate scoring call or JSON round-trip needed.
 
 Candidates are saved to a live tracker page with standardized fields and outreach hooks, so your review and contact process stays fast and repeatable — and the page itself is where you check off outreach as you go.
 
@@ -63,23 +63,19 @@ Why it matters: surfaces domain practitioners beyond one flagship repo.
 What it does: pulls public members from a company GitHub organisation.
 Why it matters: supports competitor and peer-company sourcing.
 
-Note: you give Claude your search criteria in plain language each time you ask it to source — see Customizing below.
+Note: you give Claude your search criteria in plain language each time you ask it to source (see Customizing below). 
 
 ## Accounts you need to create
 
-- **GitHub** (github.com) — your source of candidates.
-- **Claude** (claude.ai), with Cowork/Artifacts enabled — this is the automation engine, the scoring engine, and the candidate database, all in one. It replaces n8n, the separate Anthropic API account, and Airtable.
-
-Optional:
-
-- **Claude desktop app**, with the conversation linked to your computer — lets Claude use your own GitHub token for faster, more reliable API access. Not required, but recommended beyond small test runs.
+- **GitHub** (github.com), your source of candidates.
+- **Claude** (claude.ai), with Cowork/Artifacts enabled. This is the automation engine, the scoring engine and the candidate database, all in one. It replaces n8n, the separate Anthropic API account and Airtable.
 
 ## How to get access set up
 
 - **GitHub token (optional)**: Settings → Developer settings → Personal access tokens → generate one. Even a token with zero scopes works — it's only used to raise API rate limits for reading public data, nothing is written to GitHub.
-- **Claude**: no separate API key to manage — you use your normal Claude login. When Claude needs your GitHub token, it'll ask for it in the conversation.
+- **Claude**: no separate API key to manage (you use your normal Claude login). When Claude needs your GitHub token, it'll ask for it in the conversation.
 
-Never paste secrets into the skill file or any file in this repo. If Claude asks for your GitHub token, give it directly in the chat when prompted — it should never be written into a committed file.
+Never paste secrets into the skill file or any file in this repo. If Claude asks for your GitHub token, give it directly in the chat when prompted, it should never be written into a committed file.
 
 ## Quickstart — two ways to use it
 
@@ -98,8 +94,8 @@ Paste `skill/SKILL.md` into a conversation and ask Claude to follow it for a sin
 
 1. You tell Claude the role (a job posting link or description) and your search criteria.
 2. Claude runs the GitHub discovery searches you specified.
-3. Candidate data is normalized, deduped, and filtered.
-4. Claude evaluates role fit directly and writes summary notes — no separate evaluation step.
+3. Candidate data is normalized, deduped and filtered.
+4. Claude evaluates role fit directly and writes summary notes (no separate evaluation step).
 5. Qualified candidates are saved to a live tracker page Claude publishes.
 6. You review candidates on that page and send outreach, checking off progress as you go.
 
@@ -121,15 +117,15 @@ Give Claude `skill/SKILL.md` and ask it to save the skill (see Quickstart, Optio
 
 **2) Connect access**
 
-No credentials to wire into a tool. Optionally link your computer to Claude for reliable GitHub API access, and give Claude a GitHub personal access token when it asks — never store it in a file.
+No credentials to wire into a tool. Optionally link your computer to Claude for reliable GitHub API access, and give Claude a GitHub personal access token when it asks (never store it in a file). 
 
 **3) Tell Claude the role you're hiring for**
 
-Give it a job posting link or a pasted description, and the role title. No config file to edit.
+Give it a job posting link or a pasted description and the role title. No config file to edit.
 
 **4) Choose your search criteria**
 
-Tell Claude which of the 5 search angles to use and their values (a location, a language, a repo, a topic, an org) — you can change this on every run.
+Tell Claude which of the 5 search angles to use and their values (a location, a language, a repo, a topic, an org) and you can change this on every run.
 
 **5) Run a test**
 
@@ -137,17 +133,17 @@ Ask Claude to source a small batch and review the tracker it publishes before re
 
 **6) Automate it (optional)**
 
-Ask Claude to set up a scheduled task if you want it running on a cadence without you asking each time — this needs a linked computer so GitHub access is available when it fires.
+Ask Claude to set up a scheduled task if you want it running on a cadence without you asking each time (this needs a linked computer so GitHub access is available when it fires). 
 
 **7) Schedule**
 
-If you set up scheduling, pick your own cadence when asking Claude to create it (the original template ran nightly at 02:00 — match that or choose differently).
+If you set up scheduling, pick your own cadence when asking Claude to create it (the original template ran nightly at 02:00, match that or choose differently).
 
 ## Customizing
 
-- Change your search criteria on any run to match new hiring goals — nothing to edit in a file.
+- Change your search criteria on any run to match new hiring goals, nothing to edit in a file.
 - Ask Claude to adjust scoring strictness for different seniority or role profiles.
-- The skill already excludes candidates already employed at the hiring company or at the source project's own team — ask Claude to extend that exclusion logic further if needed.
+- The skill already excludes candidates already employed at the hiring company or at the source project's own team. Ask Claude to extend that exclusion logic further if needed.
 - Ask Claude to add fields to the tracker if your process needs more than what's listed above.
 
 ## Repository structure
@@ -162,22 +158,6 @@ README.md
 .gitleaks.toml
 .gitignore
 LICENSE
-```
-
-## Security notes
-
-This repo is a public skill template. It should contain logic only, never live secrets or personal data.
-
-**What is safe to publish:** the skill's instructions, API endpoint patterns, field mappings, and example search syntax.
-
-**What must not be committed:** GitHub tokens, Claude API keys, `.env` files, private keys, or real candidate data from any run.
-
-Use placeholders like `<owner>/<repo>` and `EXAMPLE_ORG` when giving examples.
-
-Gitleaks runs via `.github/workflows/gitleaks.yml`. Run locally before pushing:
-
-```
-gitleaks detect --config .gitleaks.toml --source . --no-git -v
 ```
 
 ## License
